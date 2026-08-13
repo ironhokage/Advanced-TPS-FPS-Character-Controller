@@ -9,7 +9,7 @@ using Player.StateMachines.MovementStates;
 using Unity.Cinemachine;
 using UnityEngine;
 
-namespace Player.Camera.Effects
+namespace Player.Scripts.Camera.Effects
 {
     public class DynamicCameraFOV : IDynamicFOV
     {

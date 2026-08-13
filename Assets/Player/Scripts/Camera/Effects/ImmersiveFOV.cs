@@ -4,7 +4,7 @@ using Player.PlayerSettings.Camera;
 using Unity.Cinemachine;
 using UnityEngine;
 
-namespace Player.Camera.Effects
+namespace Player.Scripts.Camera.Effects
 {
     public class ImmersiveFOV : IBodyImmersiveFOV
     {

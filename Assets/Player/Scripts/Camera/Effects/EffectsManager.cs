@@ -1,5 +1,6 @@
 using System;
 using Cysharp.Threading.Tasks;
+using Player.Camera.Effects;
 using Player.Interfaces.Camera.CameraEffects;
 using Player.Interfaces.Movement.Context;
 using Player.PlayerSettings.Camera;
@@ -7,7 +8,7 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace Player.Camera.Effects
+namespace Player.Scripts.Camera.Effects
 {
     public class EffectsManager : ICameraEffectsManager
     {

@@ -1,7 +1,7 @@
-using Player.Locomotion.Interface;
 using Player.Managers;
 using Player.Managers.Movement;
 using Player.PlayerSettings.Movement;
+using Player.Scripts.Locomotion.Interface;
 using Player.Scripts.StateMachines.Base;
 using UnityEngine;
 

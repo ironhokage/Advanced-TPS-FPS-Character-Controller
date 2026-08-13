@@ -1,7 +1,7 @@
 using KinematicCharacterController;
-using Player.Locomotion.Interface;
 using Player.Managers.Interfaces;
 using Player.PlayerSettings.Movement;
+using Player.Scripts.Locomotion.Interface;
 using Player.Scripts.StateMachines.Base;
 using Player.Scripts.StateMachines.MovementStates;
 using Player.StateMachines.Base;

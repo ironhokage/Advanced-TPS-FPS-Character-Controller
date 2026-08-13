@@ -6,13 +6,14 @@ using KinematicCharacterController;
 using Player.Input;
 using Player.Interfaces.Movement;
 using Player.Interfaces.Movement.Context;
+using Player.Managers;
 using Player.Managers.Movement;
 using Player.PlayerSettings.Movement;
 using Player.StateMachines.Base;
 using Unity.Cinemachine;
 using UnityEngine;
 
-namespace Player.Managers
+namespace Player.Scripts.Managers
 {
     [DefaultExecutionOrder(-60)] 
     public class PlayerBrainController : MonoBehaviour, IMovementContext, IOrientationDataProvider, IDataProvider
@@ -46,8 +47,10 @@ namespace Player.Managers
         {
             ValidateDependencies();
             SetupInterfaces();
+            
             kccMovementCharacterController.AwakeKCCMotor();
             _cts = new CancellationTokenSource();
+            
             _cameraDependency.GetCameraReferences(cameras);
             InitializeAsync().Forget(); 
         }
@@ -61,7 +64,7 @@ namespace Player.Managers
             }
             catch (OperationCanceledException)
             {
-                Debug.LogError("Initialization cancelled"); // This is used when we want to early cancel the load
+                Debug.LogError("Initialization cancelled"); 
             }
             catch (Exception e)
             {
@@ -112,7 +115,7 @@ namespace Player.Managers
 
             _movementDependency.ComputeMovementInput(
                 Motor.CharacterForward, Motor.CharacterRight, Motor.CharacterUp,
-                cam.forward, cam.right, Vector3.up, 
+                cam.forward, Vector3.up, 
                 _isInFPS);
 
             _movementDependency.UpdateCharacterRotation(

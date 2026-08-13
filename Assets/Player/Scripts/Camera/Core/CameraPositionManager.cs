@@ -1,20 +1,14 @@
 using System;
 using Cysharp.Threading.Tasks;
-using Player.Camera.Interfaces.CameraCore;
 using Player.Camera.SOs;
+using Player.Scripts.Camera.Interfaces.CameraCore;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace Player.Camera.Core
+namespace Player.Scripts.Camera.Core
 {
     public class CameraPositionManager : ICameraPosition
     {
-        #region Camera Variables
-        private float _cameraYaw;
-        private float _cameraPitch;
-
-        #endregion
-        
         public CameraPositionSettings PositionSettings { get; set; }
         public Vector3 CharUp { get; set; }
 
@@ -34,14 +28,8 @@ namespace Player.Camera.Core
                 throw;
             }
         }
-        
-        public void SetCameraAxes(float pitch, float yaw)
-        {
-            _cameraPitch = pitch;
-            _cameraYaw = yaw;
-        }
 
-        public void ComputeCameraPositionCoordinates(bool isInFPS, GameObject cam, Transform characterTransform, Vector2 lookVector, float pitch)
+        public void ComputeCameraPositionCoordinates(bool isInFPS, GameObject cam, Transform characterTransform, float smoothedYaw, float smoothedPitch)
         {
             if (cam == null) return;
             if (isInFPS)
@@ -50,7 +38,7 @@ namespace Player.Camera.Core
             }
             else
             {
-                CalculateTPSPosition(cam, characterTransform, lookVector, pitch);
+                CalculateTPSPosition(cam, characterTransform, smoothedYaw, smoothedPitch);
             }
         }
 
@@ -64,24 +52,25 @@ namespace Player.Camera.Core
             cam.transform.position = characterTransform.position + eyeOffset + forwardOffset;
         }
 
-        private void CalculateTPSPosition(GameObject cam, Transform characterTransform, Vector2 lookVector, float pitch)
+        private void CalculateTPSPosition(GameObject cam, Transform characterTransform, float smoothedYaw, float smoothedPitch)
         {
-            _cameraYaw += lookVector.x;
-            _cameraPitch = pitch;
-            
-            var rotation = Quaternion.Euler(_cameraPitch, _cameraYaw, 0f);
+            var fullRotation = Quaternion.Euler(smoothedPitch, smoothedYaw, 0f);
             
             var localOffset = new Vector3(
                 PositionSettings.TPSXAxisOffset,
                 PositionSettings.TPSEyeOffset,
                 PositionSettings.TPSZAxisOffset);
             
-            var worldOffset = rotation * localOffset;
-            var lookTarget = characterTransform.position + CharUp  * PositionSettings.TPSEyeOffset;
+            var worldOffset = fullRotation * localOffset;
+    
+            var lookTarget = characterTransform.position + CharUp * PositionSettings.TPSEyeOffset;
             
             cam.transform.position = characterTransform.position + worldOffset;
-            cam.transform.LookAt(lookTarget);
+            
+            cam.transform.LookAt(lookTarget, CharUp);
         }
+
+
     }
 }
 

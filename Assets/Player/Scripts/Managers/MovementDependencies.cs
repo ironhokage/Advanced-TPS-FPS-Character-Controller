@@ -3,14 +3,14 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using KinematicCharacterController;
 using Player.Input;
-using Player.Locomotion.Interface;
 using Player.Locomotion.Locomotion;
 using Player.Managers.Interfaces;
 using Player.Managers.Movement;
 using Player.PlayerSettings.Movement;
+using Player.Scripts.Locomotion.Interface;
 using UnityEngine;
 
-namespace Player.Managers
+namespace Player.Scripts.Managers
 {
    public class MovementDependencies : IMovementDependency, ICharacterMovementHandler
 {
@@ -54,28 +54,46 @@ namespace Player.Managers
     
     public void ComputeMovementInput(
         Vector3 charForward, Vector3 charRight, Vector3 charUp,
-        Vector3 camForward, Vector3 camRight, Vector3 camUp,
+        Vector3 camForward, Vector3 camUp,
         bool isInFPS)
     {
-        // --- FPS: character‑relative (unchanged) ---
+        // --- FPS: character‑relative ---
         var charFwd = Vector3.ProjectOnPlane(charForward, charUp).normalized;
         var charRgt = Vector3.ProjectOnPlane(charRight, charUp).normalized;
         if (charFwd.sqrMagnitude < 0.001f)
             charFwd = Vector3.ProjectOnPlane(charUp, charUp).normalized;
-        Vector3 charMove = charFwd * _rawInput.y + charRgt * _rawInput.x;
+        var charMove = charFwd * _rawInput.y + charRgt * _rawInput.x;
 
         // --- TPS: camera‑relative ---
-        // Use world up for projection so vertical camera tilt doesn't skew movement
-        Vector3 worldUp = Vector3.up;
-        var camFwdFlat = Vector3.ProjectOnPlane(camForward, worldUp).normalized;
-        var camRgtFlat = Vector3.ProjectOnPlane(camRight, worldUp).normalized;
-        if (camFwdFlat.sqrMagnitude < 0.001f)
-            camFwdFlat = Vector3.ProjectOnPlane(worldUp, worldUp).normalized;
-        Vector3 camMove = camFwdFlat * _rawInput.y + camRgtFlat * _rawInput.x;
-
+        var camRotation = Quaternion.LookRotation(camForward, camUp);
+        
+        var camYaw = camRotation.eulerAngles.y;
+        var flatCamRotation = Quaternion.Euler(0f, camYaw, 0f);
+        
+        var tpsFwd = flatCamRotation * Vector3.forward;
+        var tpsRgt = flatCamRotation * Vector3.right;
+        
+        var camMove = tpsFwd * _rawInput.y + tpsRgt * _rawInput.x;
+        
         _moveInputVector = isInFPS ? charMove : camMove;
     }
 
+    
+    public void UpdateCharacterRotation(float deltaTime, float deltaAngle, bool isInFps)
+    {
+        if (isInFps)
+        {
+            Motor.SetRotation(Quaternion.AngleAxis(deltaAngle, Motor.CharacterUp), bypassInterpolation: true);
+            return;
+        }
+        
+        if (!(_moveInputVector.sqrMagnitude > 0.001f)) return;
+        
+        var targetRotation = Quaternion.LookRotation(_moveInputVector, Motor.CharacterUp);
+        var smoothedRotation = Quaternion.Slerp(Motor.TransientRotation, targetRotation, 10f * deltaTime);
+        Motor.SetRotation(smoothedRotation, bypassInterpolation: true);
+    }
+    
     public void UpdateVelocity(ref Vector3 currentVelocity, bool isStableOnGround, float deltaTime, Vector3 up)
     {
         if (!IsActive) return;
@@ -91,21 +109,6 @@ namespace Player.Managers
         }
 
         _jumpManager.ApplyJumpForce(ref currentVelocity);
-    }
-    
-    public void UpdateCharacterRotation(float deltaTime, float deltaAngle, bool isInFps)
-    {
-        if (isInFps)
-        {
-            Motor.SetRotation(Quaternion.AngleAxis(deltaAngle, Motor.CharacterUp), bypassInterpolation: true);
-            return;
-        }
-
-        if (_moveInputVector.sqrMagnitude > 0.001f)
-        {
-            var targetRotation = Quaternion.LookRotation(_moveInputVector, Vector3.up);
-            Motor.SetRotation(targetRotation, bypassInterpolation: true);
-        }
     }
 
     public void BeforeCharacterUpdate(float deltaTime)

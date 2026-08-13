@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Player.Camera.SOs
 {
@@ -36,6 +37,8 @@ namespace Player.Camera.SOs
         [field: Tooltip("Smoothing factors for X and Y mouse movement.")]
         [field: SerializeField] public float SmoothingFactorX { get; set; } = 9.75f;
         [field: SerializeField] public float SmoothingFactorY { get; set; } = 7.75f; 
+        
+        [field: SerializeField] public float TargetPitch { get; set; } = 9.75f;
         
     }
 }

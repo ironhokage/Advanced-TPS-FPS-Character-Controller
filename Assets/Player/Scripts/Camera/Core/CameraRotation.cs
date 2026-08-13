@@ -5,20 +5,21 @@ using Player.Camera.SOs;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace Player.Camera.Core
+namespace Player.Scripts.Camera.Core
 {
     public class CameraRotation : ICameraRotation
     {
         #region Fields
-        private CameraRotationSettings _rotationSettings;
+        public CameraRotationSettings RotationSettings;
         #endregion
 
         private float _targetYaw;
         private float _fpsPitch;
         private float _tpsPitch;
-        private float _smoothedYaw;
         
+        public float SmoothedYaw;
         public float SmoothedPitch;
+        
         public Quaternion cameraRotation { get; set; }
 
         public async UniTask<CameraRotationSettings> InstantiateAsync()
@@ -27,9 +28,9 @@ namespace Player.Camera.Core
             {
                 var handle = Addressables.LoadAssetAsync<CameraRotationSettings>("CameraRotationSettings");
                 
-                _rotationSettings = await handle.ToUniTask();
+                RotationSettings = await handle.ToUniTask();
 
-                return _rotationSettings;
+                return RotationSettings;
             }
             catch(Exception e)
             {
@@ -41,7 +42,7 @@ namespace Player.Camera.Core
         #region Public Methods
         public void HandleRotationInput(Vector2 mousePosition)
         {
-            if (_rotationSettings == null)
+            if (RotationSettings == null)
                 return;
             
             if(mousePosition.magnitude < 0.01f) return;
@@ -54,20 +55,20 @@ namespace Player.Camera.Core
 
         public float CameraUpdateRotation(GameObject cameraObject, bool isInFPS)
         {
-            if (_rotationSettings == null || cameraObject == null)
+            if (RotationSettings == null || cameraObject == null)
                 return 0f;
 
             cameraRotation = Rotation(isInFPS);
             cameraObject.transform.rotation = cameraRotation;
 
-            return isInFPS ? _smoothedYaw : 0.0f;
+            return isInFPS ? SmoothedYaw : 0.0f;
         }
         #endregion
         
         public void ResetTpsOrientation(float yaw, float pitch)
         {
             _targetYaw = yaw;
-            _smoothedYaw = yaw;
+            SmoothedYaw = yaw;
             _tpsPitch = pitch;
             SmoothedPitch = pitch;
         }
@@ -79,22 +80,22 @@ namespace Player.Camera.Core
         {
             var delta = Time.deltaTime;
             
-            var weightX = 1.0f - Mathf.Exp(-_rotationSettings.SmoothingFactorX * delta);
-            var weightY = 1.0f - Mathf.Exp(-_rotationSettings.SmoothingFactorY * delta);
+            var weightX = 1.0f - Mathf.Exp(-RotationSettings.SmoothingFactorX * delta);
+            var weightY = 1.0f - Mathf.Exp(-RotationSettings.SmoothingFactorY * delta);
 
             var finalPitch = isInFPS ? _fpsPitch : _tpsPitch;
             
-            _smoothedYaw = Mathf.Lerp(_smoothedYaw, _targetYaw, weightX);
+            SmoothedYaw = Mathf.Lerp(SmoothedYaw, _targetYaw, weightX);
             SmoothedPitch = Mathf.Lerp(SmoothedPitch, finalPitch, weightY);
             
-            return Quaternion.Euler(SmoothedPitch, _smoothedYaw, 0f);
+            return Quaternion.Euler(SmoothedPitch, SmoothedYaw, 0f);
         }
 
         private float CalculateSoftFPSPitch(ref float currentPitch, float deltaPitch)
         {
-            var limitMin = Mathf.Min(_rotationSettings.FPSMaxUpPitch, _rotationSettings.FPSMaxDownPitch); 
-            var limitMax = Mathf.Max(_rotationSettings.FPSMaxUpPitch, _rotationSettings.FPSMaxDownPitch); 
-            var softZone = _rotationSettings.SoftZoneDegrees;
+            var limitMin = Mathf.Min(RotationSettings.FPSMaxUpPitch, RotationSettings.FPSMaxDownPitch); 
+            var limitMax = Mathf.Max(RotationSettings.FPSMaxUpPitch, RotationSettings.FPSMaxDownPitch); 
+            var softZone = RotationSettings.SoftZoneDegrees;
 
             var resistanceFactor = 1.0f;
 
@@ -130,9 +131,9 @@ namespace Player.Camera.Core
 
         private float CalculateTPSPitch(ref float currentPitch, float deltaPitch)
         {
-            var limitMin = Mathf.Min(_rotationSettings.TPSMaxUpPitch, _rotationSettings.TPSMaxDownPitch); 
-            var limitMax = Mathf.Max(_rotationSettings.TPSMaxUpPitch, _rotationSettings.TPSMaxDownPitch); 
-            var softZone = _rotationSettings.SoftZoneDegrees;
+            var limitMin = Mathf.Min(RotationSettings.TPSMaxUpPitch, RotationSettings.TPSMaxDownPitch); 
+            var limitMax = Mathf.Max(RotationSettings.TPSMaxUpPitch, RotationSettings.TPSMaxDownPitch); 
+            var softZone = RotationSettings.SoftZoneDegrees;
 
             var resistanceFactor = 1.0f;
 

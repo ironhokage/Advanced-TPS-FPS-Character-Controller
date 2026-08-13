@@ -1,7 +1,7 @@
 using Player.PlayerSettings.Movement;
 using UnityEngine;
 
-namespace Player.Locomotion.Interface
+namespace Player.Scripts.Locomotion.Interface
 {
     public interface ICharacterMovementHandler
     {
@@ -11,10 +11,8 @@ namespace Player.Locomotion.Interface
         // Lifecycle
         void BeforeCharacterUpdate(float deltaTime);
 
-        void ComputeMovementInput(
-            Vector3 charForward, Vector3 charRight, Vector3 charUp,
-            Vector3 camForward, Vector3 camRight, Vector3 camUp,
-            bool isInFPS);
+        void ComputeMovementInput(Vector3 charForward, Vector3 charRight, Vector3 charUp, 
+            Vector3 camForward, Vector3 camUp, bool isInFPS);
 
         // Input
         void EnableDependency();

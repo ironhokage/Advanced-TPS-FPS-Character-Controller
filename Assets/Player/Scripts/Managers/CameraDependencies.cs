@@ -9,6 +9,8 @@ using Player.Camera.Effects;
 using Player.Input;
 using Player.Interfaces.Movement.Context;
 using Player.Managers.Interfaces;
+using Player.Scripts.Camera.Core;
+using Player.Scripts.Camera.Effects;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -58,7 +60,6 @@ namespace Player.Managers
             
             SetCursorState(true);
             _cameraPosition.CharUp = CharacterUp;
-            _cameraPosition.SetCameraAxes(CharacterMotor.transform.position.x, CharacterMotor.transform.position.y);
             _cameraEffectsManager.InitializeEffects();
             IsCameraActive = true;
         }
@@ -80,7 +81,8 @@ namespace Player.Managers
         public void LateUpdateDependency(bool isInFPS)
         {
             if(!IsCameraActive) return;
-            _cameraPosition.ComputeCameraPositionCoordinates(isInFPS, _activeCamera.gameObject, CharacterMotor.transform, _lookVector, _cameraRotation.SmoothedPitch);
+            _cameraPosition.ComputeCameraPositionCoordinates(isInFPS, _activeCamera.gameObject, CharacterMotor.transform, _cameraRotation.SmoothedYaw, _cameraRotation.SmoothedPitch);
+            _cameraEffectsManager.LateUpdateEffects();
         }
         
         public void GetCameraReferences(List<CinemachineCamera> cameras)
@@ -113,7 +115,7 @@ namespace Player.Managers
             {
                 SwitchCam(_tpsCamera);
                 isInFPS = false;
-                SnapTpsCameraBehindCharacter();   // <-- add this
+                SnapTpsCameraBehindCharacter(); 
             }
             else if (IsActiveCamera(_tpsCamera))
             {
@@ -142,31 +144,24 @@ namespace Player.Managers
             if (_tpsCamera == null || CharacterMotor == null)
                 return;
 
-            Vector3 charForward = CharacterMotor.CharacterForward;
-            Vector3 charUp = CharacterMotor.CharacterUp;
+            var camRotSett = _cameraRotation.RotationSettings;
 
-            // 1. Compute the yaw from the character's flat forward direction
-            Vector3 flatForward = Vector3.ProjectOnPlane(charForward, charUp).normalized;
+            var charForward = CharacterMotor.CharacterForward;
+            var charUp = CharacterMotor.CharacterUp;
+            
+            var flatForward = Vector3.ProjectOnPlane(charForward, charUp).normalized;
             if (flatForward.sqrMagnitude < 0.001f)
                 flatForward = Vector3.ProjectOnPlane(charUp, charUp).normalized;
-            float targetYaw = Mathf.Atan2(flatForward.x, flatForward.z) * Mathf.Rad2Deg;
-
-            // 2. Use a sensible default TPS pitch (could come from settings)
-            float targetPitch = 15f;   // adjust to your taste
-
-            // 3. Reset the rotation controller’s state
-            _cameraRotation.ResetTpsOrientation(targetYaw, targetPitch);
-
-            // 4. Reset the position manager’s internal yaw/pitch
-            _cameraPosition.SetCameraAxes(targetPitch, targetYaw);
-
-            // 5. Force a TPS position update with zero mouse input so the camera moves instantly
+            var targetYaw = Mathf.Atan2(flatForward.x, flatForward.z) * Mathf.Rad2Deg;
+            
+            _cameraRotation.ResetTpsOrientation(targetYaw, camRotSett.TargetPitch);
+            
             _cameraPosition.ComputeCameraPositionCoordinates(
-                false,                         // TPS mode
+                false,                        
                 _tpsCamera.gameObject,
                 CharacterMotor.transform,
-                Vector2.zero,                  // no mouse movement
-                targetPitch);
+                0f,                 
+                camRotSett.TargetPitch);
         }
         
         private static void SetCursorState(bool locked)

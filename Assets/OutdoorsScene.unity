@@ -423,8 +423,8 @@ MonoBehaviour:
   materialMipBias: 0
   m_RenderingPathCustomFrameSettings:
     bitDatas:
-      data1: 5770166122053581
-      data2: 12934340311651418136
+      data1: 5770234841530317
+      data2: 17546026347258675224
     lodBias: 1
     lodBiasMode: 0
     lodBiasQualityLevel: 0
@@ -432,15 +432,15 @@ MonoBehaviour:
     maximumLODLevelMode: 0
     maximumLODLevelQualityLevel: 0
     sssQualityMode: 0
-    sssQualityLevel: 0
+    sssQualityLevel: 2
     sssCustomSampleBudget: 20
     sssCustomDownsampleSteps: 0
     msaaMode: 1
     materialQuality: 0
   renderingPathCustomFrameSettingsOverrideMask:
     mask:
-      data1: 0
-      data2: 0
+      data1: 5065997642892305
+      data2: 13835058694427017216
   defaultFrameSettings: 0
 --- !u!81 &810909544
 AudioListener:
@@ -1190,6 +1190,7 @@ Terrain:
   m_AllowAutoConnect: 1
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
+  m_EnableHeightmapLODFrustumCulling: 1
   m_TreeMotionVectorModeOverride: 3
 --- !u!4 &1718003485
 Transform:
@@ -1924,6 +1925,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5767284311119315728, guid: 4ef6a62ab989ef0c582fe9c89bee9d8d, type: 3}
+      propertyPath: debugInputs
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5945366024881298220, guid: 4ef6a62ab989ef0c582fe9c89bee9d8d, type: 3}
       propertyPath: m_Name
       value: InputManager
@@ -2098,7 +2103,6 @@ MonoBehaviour:
   - {fileID: 7026437961832434240}
   inputManager: {fileID: 2116651341}
   kccMotor: {fileID: 3603213962604317954}
-  rootT: {fileID: 903931416}
   walkSettings: {fileID: 11400000, guid: fd64973a6a95bca4fb902dd8b43f5c97, type: 2}
   runSettings: {fileID: 11400000, guid: 9ff2fec1e99613140bc897169c9bcb14, type: 2}
 --- !u!1660057539 &9223372036854775807
