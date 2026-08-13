@@ -2,6 +2,10 @@
 
 A modular and extensible **Third-Person / First-Person Character Controller for Unity**, built with a systems-oriented architecture that separates input, locomotion, camera, physics, state management, events, procedural motion, visuals, and supporting systems.
 
+**Dependencies:**
+  - This project is built using the [Kinematic Character Controller](https://assetstore.unity.com/packages/tools/physics/kinematic-character-controller-99131) asset from the Unity Asset Store.
+  - It also has the [Juicy Springs from LlamaAcademy](https://github.com/llamacademy/juicy-springs).
+
 The goal of this project is to provide a flexible foundation for building responsive and maintainable character controllers without relying on a single monolithic script.
 
 ---
