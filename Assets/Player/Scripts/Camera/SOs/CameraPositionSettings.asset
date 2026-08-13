@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 178c8c69d09ae0ab1859335406314b42, type: 3}
+  m_Name: CameraPositionSettings
+  m_EditorClassIdentifier: Assembly-CSharp::Player.Camera.SOs.CameraPositionSettings
+  <FPSEyeOffset>k__BackingField: 0.55
+  <TpsCameraPositionSmoothing>k__BackingField: 5
+  <TPSEyeOffset>k__BackingField: 0.55
+  <TPSXAxisOffset>k__BackingField: 0
+  <TPSZAxisOffset>k__BackingField: -3.55
+  <ForwardDistance>k__BackingField: 0.55

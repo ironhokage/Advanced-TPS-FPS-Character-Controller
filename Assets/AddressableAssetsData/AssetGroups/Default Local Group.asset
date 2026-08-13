@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Default Local Group
+  m_GUID: f64a9766db3fdfe57b1e8f7d246afd3e
+  m_SerializeEntries:
+  - m_GUID: 11ff2c7d85c70d0419a33b8e54e5b6f8
+    m_Address: JumpSettings
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 28900eb19d740de44976d39f844770d1
+    m_Address: CameraZoomSettings
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Camera Zoom
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3cfc383e52aac382490e26e74506784a
+    m_Address: CameraPositionSettings
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3d199888f78a7f55d9159487f597ab5b
+    m_Address: ImmersiveFOVSettings
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - 'Camera FOV '
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5b0399451448f374393b8adefcbddcf8
+    m_Address: CameraRotationSettings
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Camera Rotation
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7d031b60e545e9b4f8c08ff6b9092635
+    m_Address: CameraInputSettings
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Camera Input
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 86f340a9daef3744fb91a4fc3ef5690c
+    m_Address: CameraFOVSettings
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - 'Camera FOV '
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c21ca6c92f9ad4f41baed370e02ed8f4
+    m_Address: AirMovementSettings
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: feffe50b3aea4ee469c5adf9fb28eb58
+    m_Address: MovementSettings
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: b7f03836c2b429f8bb989ff995378346, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 376dd504e511db951a02ad923ca164ed, type: 2}
+    - {fileID: 11400000, guid: deee4cb1cabcc519896e41a57e76fc29, type: 2}

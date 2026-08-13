@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f72007cc34bd34d9e5d9cfb241e52b, type: 3}
+  m_Name: JumpSettings
+  m_EditorClassIdentifier: Assembly-CSharp::JumpSettings
+  <JumpHeight>k__BackingField: 12
+  <JumpTimeToPeak>k__BackingField: 0.4
+  <JumpTimeToFall>k__BackingField: 0.3
+  <JumpCooldown>k__BackingField: 0.15
+  <InAirInputMultiplier>k__BackingField: 1
+  <ApexMultiplier>k__BackingField: 0.1
+  <JumpUpSpeed>k__BackingField: 7.5
+  <AllowJumpingWhenSliding>k__BackingField: 0
+  <Maxjumpholdtime>k__BackingField: 0.25

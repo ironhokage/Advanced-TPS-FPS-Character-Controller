@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c90961caad251534ab01d3122332df63, type: 3}
+  m_Name: DragSettings
+  m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerSettings.Managers.DragSettings
+  <GroundDrag>k__BackingField: 8.25
+  <AirDrag>k__BackingField: 0.2
+  <MinDrag>k__BackingField: 4.25
+  <MaxDrag>k__BackingField: 40
+  <FinalMultCap>k__BackingField: 1.5
+  directionalDragCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1.25
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.46080592
+      value: 1.0642855
+      inSlope: -0.37399578
+      outSlope: -0.37399578
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9888916
+      value: 1.1484375
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

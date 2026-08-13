@@ -1,0 +1,136 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 468a46d0ae32c3544b7d98094e6448a9, type: 3}
+  m_Name: AddressableAssetSettings
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetSettings
+  m_DefaultGroup: f64a9766db3fdfe57b1e8f7d246afd3e
+  m_currentHash:
+    serializedVersion: 2
+    Hash: 14f6ab2aba898f0018048805bd9c41d4
+  m_OptimizeCatalogSize: 0
+  m_BuildRemoteCatalog: 0
+  m_CatalogRequestsTimeout: 0
+  m_DisableCatalogUpdateOnStart: 0
+  m_InternalIdNamingMode: 0
+  m_InternalBundleIdMode: 1
+  m_AssetLoadMode: 0
+  m_BundledAssetProviderType:
+    m_AssemblyName: Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_ClassName: UnityEngine.ResourceManagement.ResourceProviders.BundledAssetProvider
+  m_AssetBundleProviderType:
+    m_AssemblyName: Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_ClassName: UnityEngine.ResourceManagement.ResourceProviders.AssetBundleProvider
+  m_IgnoreUnsupportedFilesInBuild: 0
+  m_UniqueBundleIds: 0
+  m_EnableJsonCatalog: 0
+  m_NonRecursiveBuilding: 1
+  m_AllowNestedBundleFolders: 0
+  m_CCDEnabled: 0
+  m_maxConcurrentWebRequests: 3
+  m_UseUWRForLocalBundles: 0
+  m_BundleTimeout: 0
+  m_BundleRetryCount: 0
+  m_BundleRedirectLimit: -1
+  m_SharedBundleSettings: 0
+  m_SharedBundleSettingsCustomGroupIndex: 0
+  m_simulatedLoadDelay: 0.1
+  m_ContiguousBundles: 1
+  m_StripUnityVersionFromBundleBuild: 0
+  m_DisableVisibleSubAssetRepresentations: 0
+  m_BuiltInBundleNaming: 0
+  mBuiltInBundleCustomNaming: 
+  m_MonoScriptBundleNaming: 0
+  m_CheckForContentUpdateRestrictionsOption: 0
+  m_MonoScriptBundleCustomNaming: 
+  m_RemoteCatalogBuildPath:
+    m_Id: 
+  m_RemoteCatalogLoadPath:
+    m_Id: 
+  m_ContentStateBuildPathProfileVariableName: 
+  m_CustomContentStateBuildPath: 
+  m_ContentStateBuildPath: 
+  m_BuildAddressablesWithPlayerBuild: 0
+  m_overridePlayerVersion: '[UnityEditor.PlayerSettings.bundleVersion]'
+  m_GroupAssets:
+  - {fileID: 11400000, guid: cbedfa0caef830692b14f0a54d1e0c27, type: 2}
+  - {fileID: 11400000, guid: 94be450ee3883839ea7c2f853d2dc3fe, type: 2}
+  m_BuildSettings:
+    m_LogResourceManagerExceptions: 1
+    m_BundleBuildPath: Temp/com.unity.addressables/AssetBundles
+  m_ProfileSettings:
+    m_Profiles:
+    - m_InheritedParent: 
+      m_Id: db283c3bc39b1d849bd3a7327a8ebce4
+      m_ProfileName: Default
+      m_Values:
+      - m_Id: 2fba4b5d8abe61d19849d63499f74406
+        m_Value: <undefined>
+      - m_Id: 3067fb4beb8db88eca6753d5b408ad30
+        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
+      - m_Id: 8c682104cd0dceeaa99896214d944410
+        m_Value: 'ServerData/[BuildTarget]'
+      - m_Id: 9ad52b1eaf00f642bb06c06dd442397c
+        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
+      - m_Id: d51ea9c485e826afea5061c0ff4091bd
+        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
+    - m_InheritedParent: 
+      m_Id: 6d1e69ca4d4d121c7babb6eb77e0811c
+      m_ProfileName: Camera
+      m_Values:
+      - m_Id: 2fba4b5d8abe61d19849d63499f74406
+        m_Value: <undefined>
+      - m_Id: 3067fb4beb8db88eca6753d5b408ad30
+        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
+      - m_Id: 8c682104cd0dceeaa99896214d944410
+        m_Value: 'ServerData/[BuildTarget]'
+      - m_Id: 9ad52b1eaf00f642bb06c06dd442397c
+        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
+      - m_Id: d51ea9c485e826afea5061c0ff4091bd
+        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
+    m_ProfileEntryNames:
+    - m_Id: 2fba4b5d8abe61d19849d63499f74406
+      m_Name: Remote.LoadPath
+      m_InlineUsage: 0
+    - m_Id: 3067fb4beb8db88eca6753d5b408ad30
+      m_Name: Local.BuildPath
+      m_InlineUsage: 0
+    - m_Id: 8c682104cd0dceeaa99896214d944410
+      m_Name: Remote.BuildPath
+      m_InlineUsage: 0
+    - m_Id: 9ad52b1eaf00f642bb06c06dd442397c
+      m_Name: BuildTarget
+      m_InlineUsage: 0
+    - m_Id: d51ea9c485e826afea5061c0ff4091bd
+      m_Name: Local.LoadPath
+      m_InlineUsage: 0
+    m_ProfileVersion: 1
+  m_LabelTable:
+    m_LabelNames:
+    - Camera Input
+    - Camera Rotation
+    - default
+    - 'Camera FOV '
+    - Camera Zoom
+    - BodySettings
+  m_SchemaTemplates: []
+  m_GroupTemplateObjects:
+  - {fileID: 11400000, guid: c1dca331156395c289b56b28b88be2c4, type: 2}
+  m_InitializationObjects: []
+  m_CertificateHandlerType:
+    m_AssemblyName: 
+    m_ClassName: 
+  m_ActivePlayerDataBuilderIndex: 2
+  m_DataBuilders:
+  - {fileID: 11400000, guid: ec91761150b8e2226a1bc26148eec211, type: 2}
+  - {fileID: 11400000, guid: dd653be3cbb7127b182ba6f395b05207, type: 2}
+  - {fileID: 11400000, guid: 8b99d9b8c8725c2a8b2d5efc11ed4117, type: 2}
+  m_ActiveProfileId: 6d1e69ca4d4d121c7babb6eb77e0811c
